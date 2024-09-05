@@ -36,19 +36,18 @@
             font-weight: lighter;
         }
 
-        #days{
-            background-color:  #f3fff3;
+        #weeks {
+            background-color: #f3fff3;
         }
     </style>
 </head>
 <body>
     
     <div id="counter">
-
+        <h2 class="box" id="weeks"></h2>
         <h2 class="box" id="days"></h2>
         <h2 class="box" id="hours"></h2>
         <h2 class="box" id="minutes"></h2>
-        <h2 class="box" id="weeks"></h2>
         <h3>
             Left in <br>This Month
         </h3>
@@ -56,25 +55,25 @@
 
 <script>
     function CountDownTimer() {
+        left_weeks = document.getElementById("weeks");
         left_days = document.getElementById("days");
         left_hours = document.getElementById("hours");
         left_minutes = document.getElementById("minutes");
-        left_weeks = document.getElementById("weeks");
     }
 
     function showRemaining() {
         now = new Date();
         days_in_this_month = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+        weeks = Math.floor(days / 7);
         days = days_in_this_month - now.getDate();
         hours = 23 - now.getHours();
         minutes = 59 - now.getMinutes();
-        weeks = Math.floor(days / 7);
-        
 
+        
+        left_weeks.innerHTML = weeks + "<br> <span class=\"small\"> weeks</span>";
         left_days.innerHTML = days + "<br> <span class=\"small\"> days </span>";
         left_hours.innerHTML = hours + "<br> <span class=\"small\"> hours</span>";
         left_minutes.innerHTML = minutes + "<br> <span class=\"small\"> mins</span>";
-        left_weeks.innerHTML = weeks + "<br> <span class=\"small\"> weeks</span>";
     }
 
     timer = setInterval(showRemaining, 1000);
